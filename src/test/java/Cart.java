@@ -49,7 +49,7 @@ import java.util.concurrent.TimeUnit;
     @Test
     public void addStringToQuantity() throws InterruptedException {
         Actions actions = new Actions(driver);
-        WebElement menuOption = driver.findElement(By.xpath("//*[@id=\"nav\"]/ol/li[4]/a"));
+        WebElement menuOption = driver.findElement(By.xpath("//*[@id=\"billing-buttons-container\"]/button/span/span"));
         actions.moveToElement(menuOption).perform();
         WebElement subMenuOption = driver.findElement(By.xpath("//*[@id=\"nav\"]/ol/li[4]/ul/li[2]/a"));
         actions.moveToElement(subMenuOption).perform();
@@ -62,7 +62,37 @@ import java.util.concurrent.TimeUnit;
         TimeUnit.SECONDS.sleep(3);
     }
 
-    @After
+        @Test
+        public void MultipleProductsAddToCart() throws InterruptedException {
+            driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col1-layout > div > div > div.std > ul > li:nth-child(3) > a > img")).click();
+            driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col3-layout > div > div.col-wrapper > div.col-main > div.category-products > ul > li:nth-child(1) > div > div.actions > button > span > span")).click();
+            driver.findElement(By.cssSelector("#product_addtocart_form > div.product-shop > div.product-options-bottom > div.add-to-cart > div.add-to-cart-buttons > button > span > span")).click();
+            driver.findElement(By.cssSelector("body > div.wrapper > div.page > div.main-container.col1-layout > div > div.breadcrumbs > ul > li.category21 > a")).click();
+            driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col3-layout > div > div.col-wrapper > div.col-main > div.category-products > ul > li:nth-child(2) > div > div.actions > button > span > span")).click();
+            driver.findElement(By.cssSelector("#shopping-cart-table > tfoot > tr > td > button.button2.btn-continue > span > span")).click();
+            driver.findElement(By.cssSelector("#links_19")).click();
+
+        }
+
+        @Test
+        public void MultipleProductsRemoveToCart() throws InterruptedException {
+            driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col1-layout > div > div > div.std > ul > li:nth-child(3) > a > img")).click();
+            driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col3-layout > div > div.col-wrapper > div.col-main > div.category-products > ul > li:nth-child(3) > div > div.actions > button > span > span")).click();
+            driver.findElement(By.cssSelector("#nav > ol > li.level0.nav-5.parent > a")).click();
+            driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col3-layout > div > div.col-wrapper > div.col-main > div.category-products > ul > li:nth-child(3) > div > div.actions > button > span > span")).click();
+            driver.findElement(By.cssSelector("#empty_cart_button > span > span")).click();
+        }
+
+        @Test
+        public void SingleProductRemoveFromCart() throws InterruptedException {
+            driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col1-layout > div > div > div.std > ul > li:nth-child(3) > a > img")).click();
+            driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col3-layout > div > div.col-wrapper > div.col-main > div.category-products > ul > li:nth-child(3) > div > div.actions > button > span > span")).click();
+            driver.findElement(By.cssSelector("#header > div > div.skip-links > div > div > a > span.label")).click();
+            driver.findElement(By.cssSelector("#cart-sidebar > li > div > a.remove")).click();
+
+        }
+
+        @After
         public void exit(){
             driver.quit();
     }
