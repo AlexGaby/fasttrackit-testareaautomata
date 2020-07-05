@@ -1,4 +1,5 @@
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -43,6 +44,9 @@ import java.util.concurrent.TimeUnit;
         driver.findElement(By.cssSelector("#qty")).clear();
         driver.findElement(By.cssSelector("#qty")).sendKeys("-5");
         driver.findElement(By.cssSelector("#product_addtocart_form > div.product-shop > div.product-options-bottom > div.add-to-cart > div.add-to-cart-buttons > button")).click();
+        WebElement cartElement = driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col1-layout > div > div > div.cart.display-single-price > ul > li > ul > li > span"));
+        Assert.assertTrue(cartElement.isDisplayed());
+        Assert.assertEquals("Racer Back Maxi Dress was added to your shopping cart.",cartElement.getText());
         TimeUnit.SECONDS.sleep(3);
     }
 
@@ -89,6 +93,10 @@ import java.util.concurrent.TimeUnit;
             driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col3-layout > div > div.col-wrapper > div.col-main > div.category-products > ul > li:nth-child(3) > div > div.actions > button > span > span")).click();
             driver.findElement(By.cssSelector("#header > div > div.skip-links > div > div > a > span.label")).click();
             driver.findElement(By.cssSelector("#cart-sidebar > li > div > a.remove")).click();
+            TimeUnit.SECONDS.sleep(5);
+            //WebElement welcomeElement = driver.findElement(By.cssSelector("#minicart-success-message"));
+            //Assert.assertTrue(welcomeElement.isDisplayed());
+            //Assert.assertEquals("Item was removed successfully.",welcomeElement.getText());
 
         }
 

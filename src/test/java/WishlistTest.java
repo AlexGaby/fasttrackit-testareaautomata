@@ -1,8 +1,10 @@
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
@@ -29,7 +31,10 @@ public class WishlistTest {
         driver.findElement(By.cssSelector("#product_addtocart_form > div.product-shop > div.product-options-bottom > ul.add-to-links > li:nth-child(1) > a"));
         driver.findElement(By.cssSelector("#header > div > div.skip-links > div > a > span.label")).click();
         driver.findElement(By.cssSelector("#header-account > div > ul > li:nth-child(2) > a")).click();
-        TimeUnit.SECONDS.sleep(3);
+        WebElement wishlistElement = driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col2-left-layout > div > div.col-main > div.my-account > div.my-wishlist > div > h1"));
+        Assert.assertTrue(wishlistElement.isDisplayed());
+        Assert.assertEquals("MY WISHLIST",wishlistElement.getText());
+        TimeUnit.SECONDS.sleep(8);
     }
     @After
     public void exit() {

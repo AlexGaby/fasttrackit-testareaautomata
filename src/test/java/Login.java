@@ -23,7 +23,6 @@ public class Login {
         driver.findElement(By.cssSelector("#pass")).sendKeys("123456");
         driver.findElement(By.cssSelector("#send2 > span > span")).click();
         WebElement welcomeElement = driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col2-left-layout > div > div.col-main > div.my-account > div > div.welcome-msg > p.hello > strong"));
-        welcomeElement.click();
         Assert.assertTrue(welcomeElement.isDisplayed());
         Assert.assertEquals("Hello, Cosmin Fast!",welcomeElement.getText());
     }
@@ -35,6 +34,9 @@ public class Login {
         driver.findElement(By.cssSelector("#email")).sendKeys("alex.gaby13@fasttrackit.org");
         driver.findElement(By.cssSelector("#pass")).sendKeys("123456");
         driver.findElement(By.cssSelector("#send2 > span > span")).click();
+        WebElement welcomeElement = driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col1-layout > div > div > div.account-login > ul > li > ul > li"));
+        Assert.assertTrue(welcomeElement.isDisplayed());
+        Assert.assertEquals("Invalid login or password.",welcomeElement.getText());
     }
 
     @Test
@@ -44,6 +46,9 @@ public class Login {
         driver.findElement(By.cssSelector("#email")).sendKeys("cosmin@fasttrackit.org");
         driver.findElement(By.cssSelector("#pass")).sendKeys("1234567");
         driver.findElement(By.cssSelector("#send2 > span > span")).click();
+        WebElement welcomeElement = driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col1-layout > div > div > div.account-login > ul > li > ul > li > span"));
+        Assert.assertTrue(welcomeElement.isDisplayed());
+        Assert.assertEquals("Invalid login or password.",welcomeElement.getText());
     }
 
     @AfterClass

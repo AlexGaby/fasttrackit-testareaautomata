@@ -28,6 +28,9 @@ public class Search {
         driver.findElement(By.cssSelector("#search")).click();
         driver.findElement(By.cssSelector("#search")).sendKeys("roller");
         driver.findElement(By.cssSelector("#search_mini_form > div.input-box > button")).click();
+        WebElement searchElement = driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col3-layout > div > div.col-wrapper > div.col-main > div.page-title > h1"));
+        Assert.assertTrue(searchElement.isDisplayed());
+        Assert.assertEquals("SEARCH RESULTS FOR 'ROLLER'",searchElement.getText());
         TimeUnit.SECONDS.sleep(3);
 
     }
@@ -38,6 +41,9 @@ public class Search {
         driver.findElement(By.cssSelector("#search")).click();
         driver.findElement(By.cssSelector("#search")).sendKeys("oxford");
         driver.findElement(By.cssSelector("#search_mini_form > div.input-box > button")).click();
+        WebElement searchElement = driver.findElement(By.cssSelector("body > div > div.page > div.main-container.col3-layout > div > div.col-wrapper > div.col-main > div.page-title > h1"));
+        Assert.assertTrue(searchElement.isDisplayed());
+        Assert.assertEquals("SEARCH RESULTS FOR 'OXFORD'",searchElement.getText());
         TimeUnit.SECONDS.sleep(3);
     }
 
